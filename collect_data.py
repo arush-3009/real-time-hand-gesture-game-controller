@@ -138,9 +138,7 @@ class DataCollector:
         print("="*60)
 
         print("\nPress the following buttons to capture the respective gestures:\n")
-        for key, value in GESTURES.item():
+        for key, value in GESTURES.items():
             print(f"Gesture: {value}  ->  Button: {key}")
-        print(f"\nAdditionally, press:\nSPACE -> Toggle auto-capture\nQ: Quit")
+        print(f"\nAdditionally, press:\nSPACE -> Toggle auto-capture\nQ -> Quit")
         print('-'*45)
-
-        
