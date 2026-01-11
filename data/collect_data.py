@@ -240,8 +240,8 @@ class DataCollector:
         y_pos = frame.shape[0] - 150
         for name in GESTURES.values():
             count_text = f"{name}: {self.counters[name]}"
-            cv2.putText(frame, count_text, (frame.shape[1] - 200, y_pos), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (200, 200, 200), 1)
-            y_pos += 25
+            cv2.putText(frame, count_text, (frame.shape[1] - 200, y_pos), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 255), 2)
+            y_pos += 30
 
 
     def handle_key(self, key):
