@@ -1,0 +1,31 @@
+# Game Control Configuration
+
+camera:
+  width: 640
+  height: 480
+  device_id: 0
+
+gestures:
+
+  #steering thresholds : left edge = 0.0 and right edge = 1.0
+  left_threshold: 0.4
+  right_threshold: 0.6
+
+  #smoothing threshold : higher = more stable controlling, lower = more responsive controlling
+  smoothing_threshold: 3
+
+  #after how many seconds of braking should reversing start?
+  brake_to_reverse_delay: 1.50
+
+display:
+  mode: "webcam"   #Options: "info_only" or "webcam"
+  show_fps: true
+  show_gesture_table: true
+  show_steering_bars: true
+  show_keys: true
+  window_name: "Asphalt Hand Control"
+
+debug:
+  enabled: false
+  log_to_file: false
+  log_file: "debug.log"

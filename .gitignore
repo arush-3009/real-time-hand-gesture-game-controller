@@ -1,0 +1,6 @@
+#MacOS
+.DS_Store
+
+#PyCache
+__pycache__/
+*.pyc
