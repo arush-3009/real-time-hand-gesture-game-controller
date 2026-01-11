@@ -233,7 +233,7 @@ class DataCollector:
             gesture_name = GESTURES[self.current_gesture]
             count = self.counters[gesture_name]
             count_text = f"Count: {count}"
-            cv2.putText(frame, count_text, (10, y_pos), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+            cv2.putText(frame, count_text, (10, y_pos), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
             y_pos += 35
         
         # All gesture counts (bottom right)
