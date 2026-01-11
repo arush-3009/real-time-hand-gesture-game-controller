@@ -14,7 +14,7 @@ GESTURES = {
 
 IMG_SIZE = 224
 CAPTURE_INTERVAL = 0.2
-DATASET_PATH = "dataset/raw"
+DATASET_PATH = os.path.join(os.path.dirname(__file__), "dataset", "raw")
 PADDING = 30 #Padding for bouding box aroung the hand in the image
 
 for gesture_name in GESTURES.values():
