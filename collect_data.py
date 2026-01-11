@@ -80,7 +80,7 @@ def save_image(frame, bbox, gesture_name, counter, saved_img_size=224):
     True if image saved in folder, False otherwise.
     """
 
-    if bbox in None:
+    if bbox is None:
         return False
 
     x_min, y_min, x_max, y_max = bbox
@@ -166,7 +166,7 @@ class DataCollector:
                 landmarks = hand_landmarks.landmark
 
                 #Draw landmarks on frame
-                self.mp_draw.draw_landmarks(frame, landmarks, mp.solutions.hands.HAND_CONNECTIONS)
+                self.mp_draw.draw_landmarks(frame, hand_landmarks, mp.solutions.hands.HAND_CONNECTIONS)
 
                 #Get the bouding box
                 h, w, c = frame.shape
@@ -298,7 +298,7 @@ class DataCollector:
 # Main execution
 if __name__ == '__main__':
     try:
-        collector = DataCollector()
+        collector = DataCollector((1280, 720))
         collector.run()
     except KeyboardInterrupt:
         print("\n\nInterrupted by user")
