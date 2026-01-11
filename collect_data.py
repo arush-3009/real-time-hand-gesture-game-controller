@@ -24,7 +24,7 @@ for gesture_name in GESTURES.values():
 
 
 #Get bouding box around hands
-def get_hand_bounding_box(landmarks, frame_width, frame_height, padding):
+def get_hand_bounding_box(landmarks, frame_width, frame_height):
     """
     Calculate bounding box around detected hand.
     Args:
@@ -51,10 +51,10 @@ def get_hand_bounding_box(landmarks, frame_width, frame_height, padding):
     y_max_norm = max(y_coordinates)
 
     #Convert Normalized coordinates to pixels and add Padding
-    x_min = int(x_min_norm * frame_width) - padding
-    x_max = int(x_max_norm * frame_width) + padding
-    y_min = int(y_min_norm * frame_height) - padding
-    y_max = int(y_max_norm * frame_height) + padding
+    x_min = int(x_min_norm * frame_width) - PADDING
+    x_max = int(x_max_norm * frame_width) + PADDING
+    y_min = int(y_min_norm * frame_height) - PADDING
+    y_max = int(y_max_norm * frame_height) + PADDING
 
     #Limit the extremities to always be inside the entire image's frame
     x_min = max(0, x_min)
@@ -65,7 +65,7 @@ def get_hand_bounding_box(landmarks, frame_width, frame_height, padding):
     return (x_min, y_min, x_max, y_max)
 
 
-def save_image(frame, bbox, saved_img_size, gesture_name, counter):
+def save_image(frame, bbox, gesture_name, counter, saved_img_size=224):
     """
     Crop the hand out of the image, resize to an appropriate size for Model input, and count the number.
 
@@ -129,9 +129,9 @@ class DataCollector:
         self.is_capturing = False
         self.last_capture_time = 0
 
-        self.counter = {}
+        self.counters = {}
         for name in GESTURES.values():
-            self.counter[name] = 0
+            self.counters[name] = 0
 
         print("="*60)
         print("Data Collection Ready")
@@ -142,3 +142,63 @@ class DataCollector:
             print(f"Gesture: {value}  ->  Button: {key}")
         print(f"\nAdditionally, press:\nSPACE -> Toggle auto-capture\nQ -> Quit")
         print('-'*45)
+
+    def run(self):
+
+        while True:
+            ret, frame = self.cap.read()
+
+            if not ret:
+                print(f"Failed to read frame from webcam.")
+                break
+
+            frame = cv2.flip(frame, 1)
+            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+            results = self.hands.process(frame_rgb)
+
+            #Get landmarks info and the bouding box
+            landmarks = None
+            bbox = None
+
+            if results.multi_hand_landmarks:
+                hand_landmarks = results.multi_hand_landmarks[0]
+                landmarks = hand_landmarks.landmark
+
+                #Draw landmarks on frame
+                self.mp_draw.draw_landmarks(frame, landmarks, mp.solutions.hands.HAND_CONNECTIONS)
+
+                #Get the bouding box
+                h, w, c = frame.shape
+                bbox = get_hand_bounding_box(landmarks, w, h)
+
+                # Draw bounding box
+                if bbox:
+                    x_min, y_min, x_max, y_max = bbox
+                    cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (255, 0, 255), 2)
+                
+            if self.is_capturing and self.current_gesture and landmarks:
+                current_time = time.time()
+                if current_time - self.last_capture_time >= CAPTURE_INTERVAL:
+                    gesture_name = GESTURES[self.current_gesture]
+                    success = save_image(frame, bbox, gesture_name, self.counters[gesture_name])
+                    if success:
+                        self.counters[gesture_name] += 1
+                        self.last_capture_time = current_time
+            
+            # Display info on frame
+            self.draw_info(frame)
+            
+            # Show frame
+            cv2.imshow('Data Collection', frame)
+            
+            # Handle keyboard input
+            key = cv2.waitKey(1) & 0xFF
+            if not self.handle_key(key):
+                break  # User pressed 'q'
+        
+        self.cleanup()
+
+
+
+
