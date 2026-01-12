@@ -136,6 +136,6 @@ class DataSplitter:
         print(f"Training Set: {len(self.X_train)} images")
         print(f"Validation Set: {len(self.X_val)} images")
         print(f"Test Set: {len(self.X_test)} images")
+        print('='*60)
 
         return True
-
