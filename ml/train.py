@@ -115,7 +115,7 @@ class Train():
         """
         Validates the training on 1 epoch of the validation set.
         """
-        self.model.evaluate()
+        self.model.eval()
 
         epoch_loss = 0
         epoch_correct_pred = 0
