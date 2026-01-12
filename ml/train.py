@@ -68,6 +68,8 @@ class Train():
         """
         Defines the training loop for 1 epoch.
         """
+        self.model.train()
+
         epoch_loss = 0
         epoch_correct_pred = 0
         epoch_total_pred = 0
@@ -87,7 +89,9 @@ class Train():
             loss = loss.item()
             epoch_loss += loss
             
-            correct_pred = (logit_outputs == labels).sum().item()
+            output_predictions = torch.argmax(logit_outputs, dim=1)
+
+            correct_pred = (output_predictions == labels).sum().item()
             total_pred = actual_batch_size
 
             batch_acc = (correct_pred/total_pred) * 100
@@ -105,3 +109,25 @@ class Train():
 
         return epoch_loss, epoch_acc
 
+
+    def validate(self):
+        """
+        Validates the training on 1 epoch of the validation set.
+        """
+        self.model.evaluate()
+
+        epoch_loss = 0
+        epoch_correct_pred = 0
+        epoch_total_pred = 0
+
+        num_batches = len(self.val_loader)
+
+        with torch.no_grad():
+            for images, labels in self.val_loader:
+                logit_outputs = self.model(images)
+                loss = self.loss_criterion(logit_outputs, labels)
+                loss = loss.item()
+                loss += epoch_loss
+                
+                correct_pred = (logit_outputs)
+            
