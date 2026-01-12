@@ -148,7 +148,7 @@ class Train():
         return epoch_loss, epoch_acc
     
 
-    def train_all_epochs(self):
+    def train_all_epochs(self, model_save_path):
         """
         Defines the training loop to train and validate through all epochs.
         """
@@ -157,6 +157,9 @@ class Train():
         training_accuracies = []
         validation_losses = []
         validation_accuracies = []
+
+        best_val_acc = 0
+        best_epoch = 0
 
         for epoch in range(self.num_epochs):
             print(f"\nStarting Training for Epoch Number {epoch+1}:")
@@ -172,6 +175,21 @@ class Train():
             print(f"\nEpoch {epoch+1} Complete!")
             print(f"Training Accuracy: {train_acc:.5f}")
             print(f"Validation Accuracy: {val_acc:.5f}")
-        
+
+            if val_acc > best_val_acc:
+                best_val_acc = val_acc
+                best_epoch = epoch+1
+                torch.save(self.model.state_dict(), model_save_path)
+                print(f"\nNEW BEST MODEL SAVED - Validation Accuracy: {val_acc:.5f}")
+
+        print('\n' + "="*60)
+        print(f"TRAINING COMPLETE!")
+        print("="*60)
+        print(f"Best Validation Accuracy: {best_val_acc:.3f}%")
+        print(f"Best Epoch: {best_epoch}")
+        print(f"Model saved to: {model_save_path}")
+
         return training_losses, training_accuracies, validation_accuracies, validation_losses
+
+    
             
