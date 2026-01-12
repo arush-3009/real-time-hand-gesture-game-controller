@@ -192,4 +192,37 @@ class Train():
         return training_losses, training_accuracies, validation_accuracies, validation_losses
 
     
-            
+    def plot_training_curves(self, train_losses, train_accs, val_losses, val_accs, plot_path):
+        """
+        Plot and save training curves.
+        """
+        epochs = range(1, len(train_losses) + 1)
+        
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 8))
+        
+        # Loss plot
+        ax1.plot(epochs, train_losses, 'b-', label='Training Loss', linewidth=2)
+        ax1.plot(epochs, val_losses, 'r-', label='Validation Loss', linewidth=2)
+        ax1.set_xlabel('Epoch', fontsize=12)
+        ax1.set_ylabel('Loss', fontsize=12)
+        ax1.set_title('Training and Validation Loss', fontsize=14, fontweight='bold')
+        ax1.legend(fontsize=10)
+        ax1.grid(True, alpha=0.3)
+        
+        # Accuracy plot
+        ax2.plot(epochs, train_accs, 'b-', label='Training Accuracy', linewidth=2)
+        ax2.plot(epochs, val_accs, 'r-', label='Validation Accuracy', linewidth=2)
+        ax2.set_xlabel('Epoch', fontsize=12)
+        ax2.set_ylabel('Accuracy (%)', fontsize=12)
+        ax2.set_title('Training and Validation Accuracy', fontsize=14, fontweight='bold')
+        ax2.legend(fontsize=10)
+        ax2.grid(True, alpha=0.3)
+        
+        plt.tight_layout()
+        
+        # Save plot
+        plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+        print(f"\nTraining curves saved to: {plot_path}")
+        
+        plt.close()
+
