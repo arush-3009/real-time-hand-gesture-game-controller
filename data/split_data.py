@@ -87,4 +87,55 @@ class DataSplitter:
         print(f"\nFolder Structure Created\n")
 
     
+    def copy_files(self):
+        """
+        Copy images from raw/ to processed/(train/val/test) folders
+        """
+        print(f"Copying Files...\n")
+
+        #Copy into the training set
+        for i, img_path in enumerate(self.X_train):
+            src = img_path
+            label = self.y_train[i]
+            dst = self.train_dir/label/img_path.name
+            shutil.copy2(src, dst)
+        
+        #Copy into the test set
+        for i, img_path in enumerate(self.X_test):
+            src = img_path
+            label = self.y_test[i]
+            dst = self.test_dir/label/img_path.name
+            shutil.copy2(src, dst)
+        
+        #Copy into the validation set
+        for i, img_path in enumerate(self.X_val):
+            src = img_path
+            label = self.y_val[i]
+            dst = self.val_dir/label/img_path.name
+            shutil.copy2(src, dst)
+        
+        print(f"All Files Copied Successfully!\n")
+
+    def run(self):
+
+        print('='*60 + "\nSTARTING DATASPLITTING PROCESS\n" + '='*60)
+
+        #Get raw data
+        self.get_raw_data()
+
+        ret = self.split_data()
+        if not ret:
+            print(f"FAILURE -> Error splitting data!")
+            return False
+
+        self.create_folders()
+        self.copy_files()
+
+        print('='*60 + "\nDATASPLITTING COMPLETE!\n")
+        print(f"Data Location: {self.processed_dir}")
+        print(f"Training Set: {len(self.X_train)} images")
+        print(f"Validation Set: {len(self.X_val)} images")
+        print(f"Test Set: {len(self.X_test)} images")
+
+        return True
 
