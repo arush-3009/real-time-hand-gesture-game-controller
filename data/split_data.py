@@ -139,3 +139,6 @@ class DataSplitter:
         print('='*60)
 
         return True
+
+ds = DataSplitter(PATH_TO_RAW_CLASS_IMAGES)
+ds.run()
