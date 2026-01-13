@@ -52,6 +52,41 @@ class HandDetector:
             return normalized_lm_list
         else:
             return lm_list
+    
+
+    def get_hand_bounding_box(self, img, hand_no=0, padding=30):
+        """
+        Get bounding box around detected hand.
+        Returns (x_min, y_min, x_max, y_max) or None if no hand.
+        """
+        if not self.results.multi_hand_landmarks:
+            return None
+        
+        h, w, c = img.shape
+        landmarks = self.results.multi_hand_landmarks[hand_no].landmark
+        
+        # Get min/max coordinates
+        x_coords = [lm.x for lm in landmarks]
+        y_coords = [lm.y for lm in landmarks]
+        
+        x_min = min(x_coords)
+        x_max = max(x_coords)
+        y_min = min(y_coords)
+        y_max = max(y_coords)
+        
+        # Convert to pixels
+        x_min = int(x_min * w)
+        x_max = int(x_max * w)
+        y_min = int(y_min * h)
+        y_max = int(y_max * h)
+        
+        # Add padding
+        x_min = max(0, x_min - padding)
+        y_min = max(0, y_min - padding)
+        x_max = min(w, x_max + padding)
+        y_max = min(h, y_max + padding)
+        
+        return (x_min, y_min, x_max, y_max)
 
 
 
