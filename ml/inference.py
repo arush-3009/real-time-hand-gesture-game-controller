@@ -1,5 +1,6 @@
 import torch
 from torchvision import transforms
+import torch.nn.functional as F
 import cv2
 from PIL import Image
 
@@ -62,7 +63,7 @@ class GesturePredictor():
 
         raw_logit_output = self.model(img_tensor)
 
-        predicted_class_probabilities = self.softmax(raw_logit_output)
+        predicted_class_probabilities = F.softmax(raw_logit_output, dim=1)
 
         class_idx = torch.argmax(predicted_class_probabilities, dim=1)
 
