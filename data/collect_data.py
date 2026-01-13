@@ -185,9 +185,6 @@ class DataCollector:
                 hand_landmarks = results.multi_hand_landmarks[0]
                 landmarks = hand_landmarks.landmark
 
-                # #Draw landmarks on frame
-                # self.mp_draw.draw_landmarks(frame, hand_landmarks, mp.solutions.hands.HAND_CONNECTIONS)
-
                 #Get the bouding box
                 h, w, c = frame.shape
                 bbox = get_hand_bounding_box(landmarks, w, h)
