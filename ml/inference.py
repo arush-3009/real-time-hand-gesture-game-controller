@@ -9,9 +9,9 @@ import ml.config as config
 
 class GesturePredictor():
 
-    def __init__(self, model, path_to_trained_model, mean_norm, std_norm, device, img_size, class_names):
+    def __init__(self, path_to_trained_model, mean_norm, std_norm, device, img_size, class_names):
 
-        self.model = model
+        self.model = GestureCNN()
         self.device = device
         self.model.load_state_dict(torch.load(path_to_trained_model, map_location=self.device))
         self.model.to(self.device)
