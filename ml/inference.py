@@ -51,17 +51,32 @@ class GesturePredictor():
         """
         Get gesture prediction with confidence.
         """
-        img_tensor = self.preprocess_image(frame, bbox)
+        with torch.no_grad():
+            img_tensor = self.preprocess_image(frame, bbox)
 
-        raw_logit_output = self.model(img_tensor)
+            raw_logit_output = self.model(img_tensor)
 
-        predicted_class_probabilities = F.softmax(raw_logit_output, dim=1)
+            predicted_class_probabilities = F.softmax(raw_logit_output, dim=1)
 
-        class_idx = torch.argmax(predicted_class_probabilities, dim=1)
+            class_idx = torch.argmax(predicted_class_probabilities, dim=1)
 
-        confidence = predicted_class_probabilities[0, class_idx].item()
-        class_idx = class_idx.item()
-        return (class_idx, confidence)
+            confidence = predicted_class_probabilities[0, class_idx].item()
+            class_idx = class_idx.item()
+
+            gesture_name = self.class_names[class_idx]
+
+            return (gesture_name, confidence)
+    
+    def predict_with_threshold(self, frame, bbox, threshold=0.8):
+        """
+        Get gesture prediction only if confidence above threshold.
+        """
+        gesture_name, confidence = self.predict(frame, bbox)
+        
+        if confidence < threshold:
+            return 'no_gesture'
+        
+        return gesture_name
 
 
         
