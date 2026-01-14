@@ -32,27 +32,27 @@ Confusion matrix plot saved to: /Users/arushhanda/Desktop/Project_asphalt_hand_c
 TEST SET RESULTS
 ============================================================
 
-Overall Test Accuracy: 99.86631%
+Overall Test Accuracy: 99.46524%
 
 Per-Class Accuracy:
   fist: 100.000%
   index_pointing: 100.000%
-  no_gesture: 100.000%
+  no_gesture: 98.425%
   open_hand: 99.422%
-  v_sign: 100.000%
+  v_sign: 99.429%
 
 Classification Report:
                 precision    recall  f1-score   support
 
-          fist       1.00      1.00      1.00       120
-index_pointing       0.99      1.00      1.00       153
-    no_gesture       1.00      1.00      1.00       127
+          fist       0.99      1.00      1.00       120
+index_pointing       0.99      1.00      0.99       153
+    no_gesture       1.00      0.98      0.99       127
      open_hand       1.00      0.99      1.00       173
-        v_sign       1.00      1.00      1.00       175
+        v_sign       0.99      0.99      0.99       175
 
-      accuracy                           1.00       748
-     macro avg       1.00      1.00      1.00       748
-  weighted avg       1.00      1.00      1.00       748
+      accuracy                           0.99       748
+     macro avg       0.99      0.99      0.99       748
+  weighted avg       0.99      0.99      0.99       748
 
 ============================================================
 
