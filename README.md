@@ -68,8 +68,8 @@ Camera Feed → MediaPipe Hand Detection → Bounding Box Extraction
 
 1. **Clone repository**
 ```bash
-git clone https://github.com/yourusername/hand-gesture-game-control.git
-cd hand-gesture-game-control
+git clone https://github.com/arush-3009/asphalt_hand_control_cnn
+cd asphalt_hand_control_cnn
 ```
 
 2. **Create virtual environment**
@@ -80,9 +80,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 3. **Install dependencies**
 ```bash
-pip install torch torchvision
-pip install opencv-python mediapipe
-pip install pynput scikit-learn matplotlib pandas pyyaml pillow
+pip install -r requirements.txt
 ```
 
 ## Usage
