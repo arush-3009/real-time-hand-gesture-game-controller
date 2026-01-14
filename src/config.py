@@ -37,7 +37,8 @@ class Config:
                 "left_threshold": 0.40,
                 "right_threshold": 0.60,
                 "smoothing_threshold": 3,
-                "brake_to_reverse_delay": 1.5
+                "brake_to_reverse_delay": 1.5,
+                "bounding_box_padding": 15
             },
             "display": {
                 "mode": "info_only",

@@ -18,7 +18,8 @@ class GameController:
 
         if landmarks:
 
-            bbox = self.hand_tracker.get_hand_bounding_box(frame)
+            bbox = self.hand_tracker.get_hand_bounding_box(frame, padding=self.configuration.get('gestures',
+            'bounding_box_padding'))
 
             #Classify the gesture using the CNN model
             if bbox is not None:

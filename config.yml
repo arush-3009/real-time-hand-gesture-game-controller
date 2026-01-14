@@ -17,6 +17,9 @@ gestures:
   #after how many seconds of braking should reversing start?
   brake_to_reverse_delay: 1.50
 
+  #Bounding Box Padding
+  bounding_box_padding: 15
+
 display:
   mode: "webcam"   #Options: "info_only" or "webcam"
   show_fps: true
