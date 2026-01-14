@@ -34,6 +34,10 @@ class Train():
         train_transformations = transforms.Compose(
             [transforms.RandomRotation(degrees=augmentations_dict["ROTATION_DEGREES"]),
             transforms.RandomHorizontalFlip(p=augmentations_dict["HORIZONTAL_FLIP_PROB"]),
+            transforms.ColorJitter(
+                brightness=augmentations_dict["COLOR_JITTER_BRIGHTNESS"],
+                contrast = augmentations_dict["COLOR_JITTER_CONTRAST"]
+            ),
             transforms.RandomCrop(size=img_size, padding=augmentations_dict["RANDOM_CROP_PADDING"]),
             transforms.ToTensor(),
             transforms.Normalize(mean=mean_norm, std=std_norm)])
