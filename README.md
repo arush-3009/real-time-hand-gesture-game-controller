@@ -1,4 +1,4 @@
-# Hand Gesture Game Control with CNN
+# Hand Gesture Game Control using a custom CNN built from scratch with a custom dataset
 
 Real-time hand gesture recognition system for controlling racing games using deep learning and computer vision.
 
@@ -6,9 +6,9 @@ Real-time hand gesture recognition system for controlling racing games using dee
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## 🎮 Overview
+## Overview
 
-This project implements an end-to-end machine learning pipeline for real-time hand gesture recognition, enabling touchless game control through a webcam. The system uses MediaPipe for hand tracking and a custom CNN for gesture classification, achieving **99.5% accuracy** on a diverse dataset.
+This project implements an end-to-end machine learning pipeline using, mainly a custom, from scratch, Convolutional Neural Network and a custom self-procured dataset for real-time hand gesture recognition, enabling touchless game control through a webcam. The system uses MediaPipe for hand tracking and a custom CNN for gesture classification, achieving **99.5% accuracy** on a diverse dataset.
 
 ## ✨ Features
 
@@ -18,7 +18,7 @@ This project implements an end-to-end machine learning pipeline for real-time ha
 - **Configurable Controls**: YAML-based configuration for easy customization
 - **Visual Feedback**: Live display with gesture detection, FPS counter, and control indicators
 
-## 🎯 Gestures & Controls
+## Gestures & Controls
 
 | Gesture | Game Action | Key Binding |
 |---------|-------------|-------------|
@@ -42,7 +42,7 @@ This project implements an end-to-end machine learning pipeline for real-time ha
 - V-Sign: 99.4%
 - No Gesture: 98.4%
 
-## 🏗️ Architecture
+## Architecture
 
 ### CNN Model
 - **Input**: 224×224 RGB images
@@ -57,7 +57,7 @@ Camera Feed → MediaPipe Hand Detection → Bounding Box Extraction
 → CNN Classification → Keyboard Control → Game Input
 ```
 
-## 🚀 Installation
+## Installation
 
 ### Prerequisites
 - Python 3.8+
