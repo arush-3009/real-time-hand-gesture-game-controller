@@ -1,0 +1,45 @@
+============================================================
+STARTING DATASPLITTING PROCESS
+============================================================
+
+Now processing -> Gesture: no_gesture
+
+Now processing -> Gesture: index_pointing
+
+Now processing -> Gesture: open_hand
+
+Now processing -> Gesture: v_sign
+
+Now processing -> Gesture: fist
+
+All images now in 1 list and corresponding class labels in another list ->
+
+List containing all image paths -> X_gesture_images
+Size: 4983 image paths.
+
+List containing all class labels -> y_gesture_classes
+Size: 4983 labels.
+
+Dataset Split into Train, Test and Validation Sets:
+
+                Train    Train %  Validation  Validation %  Test     Test %
+fist              557  16.042627         122     15.989515   120  16.042781
+index_pointing    711  20.478111         156     20.445609   153  20.454545
+no_gesture        591  17.021889         130     17.038008   127  16.978610
+open_hand         801  23.070276         176     23.066841   173  23.128342
+v_sign            812  23.387097         179     23.460026   175  23.395722
+
+Folder Structure Created
+
+Copying Files...
+
+All Files Copied Successfully!
+
+============================================================
+DATASPLITTING COMPLETE!
+
+Data Location: dataset/processed
+Training Set: 3472 images
+Validation Set: 763 images
+Test Set: 748 images
+============================================================
