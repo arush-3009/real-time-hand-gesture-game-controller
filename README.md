@@ -26,7 +26,7 @@ This project implements an end-to-end machine learning pipeline using, mainly a 
 | ✊ Fist | Brake/Reverse | S |
 | ✌️ V-sign | Drift | S |
 | ☝️ Index finger | Nitro | N |
-| 👈👉 Hand position | Steer | A/D |
+| ✋_ _ _ _✋ | Hand position | Steer | A/D |
 
 ## Performance
 
