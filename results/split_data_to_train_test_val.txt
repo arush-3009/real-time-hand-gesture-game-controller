@@ -15,19 +15,19 @@ Now processing -> Gesture: fist
 All images now in 1 list and corresponding class labels in another list ->
 
 List containing all image paths -> X_gesture_images
-Size: 4983 image paths.
+Size: 6500 image paths.
 
 List containing all class labels -> y_gesture_classes
-Size: 4983 labels.
+Size: 6500 labels.
 
 Dataset Split into Train, Test and Validation Sets:
 
-                Train    Train %  Validation  Validation %  Test     Test %
-fist              557  16.042627         122     15.989515   120  16.042781
-index_pointing    711  20.478111         156     20.445609   153  20.454545
-no_gesture        591  17.021889         130     17.038008   127  16.978610
-open_hand         801  23.070276         176     23.066841   173  23.128342
-v_sign            812  23.387097         179     23.460026   175  23.395722
+                Train  Train %  Validation  Validation %  Test  Test %
+fist              906     20.0         199          20.0   195    20.0
+index_pointing    906     20.0         199          20.0   195    20.0
+no_gesture        906     20.0         199          20.0   195    20.0
+open_hand         906     20.0         199          20.0   195    20.0
+v_sign            906     20.0         199          20.0   195    20.0
 
 Folder Structure Created
 
@@ -39,7 +39,7 @@ All Files Copied Successfully!
 DATASPLITTING COMPLETE!
 
 Data Location: dataset/processed
-Training Set: 3472 images
-Validation Set: 763 images
-Test Set: 748 images
+Training Set: 4530 images
+Validation Set: 995 images
+Test Set: 975 images
 ============================================================
