@@ -68,8 +68,8 @@ Camera Feed → MediaPipe Hand Detection → Bounding Box Extraction
 
 1. **Clone repository**
 ```bash
-git clone https://github.com/arush-3009/asphalt_hand_control_cnn
-cd asphalt_hand_control_cnn
+git clone https://github.com/arush-3009/real-time-hand-gesture-game-controller.git
+cd real-time-hand-gesture-game-controller
 ```
 
 2. **Create virtual environment**
